@@ -1,4 +1,4 @@
-import calender.Prompt;
+package calender;
 
 public class Main {
     public static void main(String[] args) {

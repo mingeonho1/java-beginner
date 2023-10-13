@@ -18,6 +18,10 @@ public class Calender {
         DayOfWeek.FRIDAY.name(),
         DayOfWeek.SATURDAY.name()
     };
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+
+    private final Schedule schedule = new Schedule();
 
     int getMaxDayOf(int year, int month) {
         if (isLeapYear(year)) {
@@ -36,7 +40,7 @@ public class Calender {
         System.out.println(getShortenedWeekdayNames());
         System.out.println("--------------------------");
         printInitialSpaces(startDayValue);
-        printDays(startDayValue, maxDays);
+        printDays(year, month, startDayValue, maxDays);
         System.out.println("--------------------------\n");
     }
 
@@ -67,19 +71,26 @@ public class Calender {
         }
     }
 
-    private void printDays(int startDayValue, int maxDays) {
-        int currentDay = startDayValue;
-        for (int i = 1; i <= maxDays; i++) {
-            System.out.printf("%-3d ", i);
-            if (currentDay % 7 == 0) {
+    private void printDays(int year, int month, int startDayValue, int maxDays) {
+        try {
+            int currentDay = startDayValue;
+            for (int i = 1; i <= maxDays; i++) {
+                if (schedule.existsSchedules(year, month, i)) System.out.print(ANSI_RED);
+                System.out.printf("%-3d ", i);
+                System.out.print(ANSI_RESET);
+
+                if (currentDay % 7 == 0) {
+                    System.out.println();
+                }
+                currentDay++;
+                if (currentDay > 7) currentDay = 1;
+            }
+
+            if ((currentDay - 1) % 7 != 0) {
                 System.out.println();
             }
-            currentDay++;
-            if (currentDay > 7) currentDay = 1;
-        }
-
-        if ((currentDay - 1) % 7 != 0) {
-            System.out.println();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }
