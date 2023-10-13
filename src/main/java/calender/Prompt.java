@@ -1,5 +1,6 @@
 package calender;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Optional;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 
 public class Prompt {
 
-    public void runPrompt() {
+    public void runPrompt() throws IOException {
         Calender calender = new Calender();
         Schedule schedule = new Schedule();
         Scanner sc = new Scanner(System.in);
@@ -35,6 +36,7 @@ public class Prompt {
                 case 9 -> printHelp();
                 case -1 -> {
                     sc.close();
+                    schedule.saveSchedule();
                     return;
                 }
             }
