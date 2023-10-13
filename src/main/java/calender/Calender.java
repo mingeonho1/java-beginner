@@ -72,25 +72,21 @@ public class Calender {
     }
 
     private void printDays(int year, int month, int startDayValue, int maxDays) {
-        try {
-            int currentDay = startDayValue;
-            for (int i = 1; i <= maxDays; i++) {
-                if (schedule.existsSchedules(year, month, i)) System.out.print(ANSI_RED);
-                System.out.printf("%-3d ", i);
-                System.out.print(ANSI_RESET);
+        int currentDay = startDayValue;
+        for (int i = 1; i <= maxDays; i++) {
+            if (schedule.existsSchedules(year, month, i)) System.out.print(ANSI_RED);
+            System.out.printf("%-3d ", i);
+            System.out.print(ANSI_RESET);
 
-                if (currentDay % 7 == 0) {
-                    System.out.println();
-                }
-                currentDay++;
-                if (currentDay > 7) currentDay = 1;
-            }
-
-            if ((currentDay - 1) % 7 != 0) {
+            if (currentDay % 7 == 0) {
                 System.out.println();
             }
-        } catch (Exception e) {
-            System.out.println(e);
+            currentDay++;
+            if (currentDay > 7) currentDay = 1;
+        }
+
+        if ((currentDay - 1) % 7 != 0) {
+            System.out.println();
         }
     }
 }

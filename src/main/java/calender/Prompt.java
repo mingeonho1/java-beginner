@@ -17,12 +17,12 @@ public class Prompt {
 
             switch (menu) {
                 case 1 -> {
-                    String createScheduleDate = promptForString(sc, "등록할 일정을 입력하세요.");
+                    String createScheduleDate = promptForString(sc, "등록할 일정을 입력하세요. (YYYY-MM-DD EX: 2023-10-01)");
                     String createScheduleContent = promptForString(sc, "등록할 일정을 내용을 입력하세요.");
                     schedule.createSchedule(createScheduleDate, createScheduleContent);
                 }
                 case 2 -> {
-                    String scheduleDate = promptForString(sc, "찾는 일정을 입력하세요.");
+                    String scheduleDate = promptForString(sc, "찾는 일정을 입력하세요. (YYYY-MM-DD EX: 2023-10-01)");
                     Optional<ArrayList<String>> schedules = schedule.findSchedule(scheduleDate);
                     schedules.ifPresent(this::printScheduleContents);
                 }
@@ -83,7 +83,6 @@ public class Prompt {
     private void printScheduleContents(ArrayList<String> scheduleContents) {
         System.out.println("-------- 일정 내용 --------");
         for (String sch : scheduleContents) {
-
             System.out.println(sch);
         }
         System.out.println("-------------------------");

@@ -21,7 +21,6 @@ public class Schedule {
                 schedules.get(date).add(scheduleContent);
             }
         } catch (Exception e) {
-            System.out.println(e);
             System.out.println("""
                 올바른 일정을 입력해주세요
                 EX: 2023-09-10, 1990-10-09
